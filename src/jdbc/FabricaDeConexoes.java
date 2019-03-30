@@ -17,9 +17,9 @@ public class FabricaDeConexoes {
 		Connection retorno = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/test";
-            String usr = "root";
-            String pwd = "root";
+			String url = "jdbc:mysql://localhost:3306/dbcrudcliente";
+            String usr = "crudcliente";
+            String pwd = "123";
             
             retorno = DriverManager.getConnection(url, usr, pwd);
             DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
