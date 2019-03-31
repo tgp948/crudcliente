@@ -2,7 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+//import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,7 +34,8 @@ public class ManterClinteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//esponse.getWriter().append("Served at: ").append(request.getContextPath());
+		processRequest(request, response);
 	}
 
 	/**
@@ -42,7 +43,8 @@ public class ManterClinteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		processRequest(request, response);
 	}
 
 	
@@ -69,5 +71,7 @@ public class ManterClinteServlet extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/index");
         rd.forward(request, response);
+        
 	}
+	
 }

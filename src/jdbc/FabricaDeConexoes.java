@@ -15,6 +15,7 @@ public class FabricaDeConexoes {
 	
 	public static Connection conectar() {
 		Connection retorno = null;
+		System.out.println("FabricaDeConecao Conectar Inicio------------------------------------------------");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3306/dbcrudcliente";
@@ -34,10 +35,16 @@ public class FabricaDeConexoes {
             
 		} catch(ClassNotFoundException ex) {
 			System.out.println("ERRO: o driver não pôde ser carregado.");
+			System.out.println(ex.getMessage());
+			System.out.println(ex);
 			
 		} catch (SQLException ex) {
 			System.out.println("ERRO: não foi possível conectar-se ao banco");
 		}
+		
+		
+		System.out.println("FabricaDeConecao Conectar Fim------------------------------------------------");
+
 		return retorno;
 	}
 	

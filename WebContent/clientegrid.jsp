@@ -11,7 +11,7 @@
 <h1>Lista de Clientes</h1>
 <br>
 <br>
-<a href="cliente?mod=cad">Cadastrar Novo Cliente</a>
+<a href="cliente.jsp?mod=cad">Cadastrar Novo Cliente</a>
 <br>
 <form action="pesquisarCliente" method="post">
 <table>

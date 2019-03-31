@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -19,16 +20,19 @@ class ClienteDao {
 			try {
 				
 				con = FabricaDeConexoes.conectar();
-				String sql = "INSERT INTO cliente (nome, email, datnasc, sexo, estcivil, ativo, cpf) VALUES (?, ?, ?, ?, ?, ?, ?);";
+				String sql = "INSERT INTO cliente (nome, email, datnasc, sexo, estcivil, ativo, cpf) VALUES (?, ?, ?, ?, ?, ?, ?)";
 				PreparedStatement ps = con.prepareStatement(sql);
 				ps.setString(1, cliente.getNome());
 				ps.setString(2, cliente.getEmail());
-				ps.setString(3, cliente.getDatnasc().toString());
+				System.out.println("getDate: " + cliente.getDatnasc().toString());
+				//ps.setDate(3, (Date) cliente.getDatnasc());
+				ps.setString(3, cliente.getDatnascForm());
 				ps.setString(4, cliente.getSexo());
 				ps.setString(5, cliente.getEstcivil());
 				ps.setInt(6, cliente.getAtivo());
 				ps.setString(7, cliente.getCpf());
 				ps.executeUpdate();
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
