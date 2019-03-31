@@ -9,9 +9,9 @@ import java.util.List;
 
 import jdbc.FabricaDeConexoes;
 
-public class ClienteDao {
+class ClienteDao {
 	
-	public void inserir(Cliente cliente) throws Exception{
+	void inserir(Cliente cliente) throws Exception{
 		if (cliente != null && cliente.getId() == 0) {
 			
 			Connection con = null;
@@ -42,7 +42,7 @@ public class ClienteDao {
 	}
 		
 		
-		public List<Cliente> listar(){
+		List<Cliente> listar(){
 			
 			List<Cliente> retorno = new ArrayList<Cliente>();
 			Connection con = null;
@@ -84,7 +84,7 @@ public class ClienteDao {
 		}
 	
 		
-	public Cliente obter(int id) {
+	Cliente obter(int id) {
 		
 		Cliente retorno = null;
 		
@@ -135,7 +135,7 @@ public class ClienteDao {
 	}
 	
 	
-	public void excluir(int id) {
+	void excluir(int id) {
 		
 		if(id > 0) {
 			Connection con = null;
@@ -155,7 +155,7 @@ public class ClienteDao {
 	}
 
 	
-	public List<Cliente> listarPorCPF(String cpf){
+	List<Cliente> listarPorCPF(String cpf){
 		
 		List<Cliente> retorno = new ArrayList<Cliente>();
 		Connection con = null;
@@ -186,7 +186,7 @@ public class ClienteDao {
 	
 	
 	
-	public List<Cliente> listarPorNome(String nome){
+	List<Cliente> listarPorNome(String nome){
 			
 			List<Cliente> retorno = new ArrayList<Cliente>();
 			Connection con = null;
@@ -216,7 +216,7 @@ public class ClienteDao {
 	}
 	
 	
-	public List<Cliente> listarPorNomeCPF(String nome, String cpf) {
+	List<Cliente> listarPorNomeCPF(String nome, String cpf) {
 		
 		List<Cliente> retorno = new ArrayList<Cliente>();
 		Connection con = null;
@@ -246,9 +246,41 @@ public class ClienteDao {
 	return retorno;
 }
 	
+	boolean alterar(Cliente cliente) {
+		boolean retorno = false;
+		if(cliente != null) {
+		Connection con = null;
+		try {
+			
+			con = FabricaDeConexoes.conectar();
+			String sql = "UPDATE cliente SET nome = ?, email = ?, datnasc = ?, sexo = ?, estcivil = ?, ativo = ?, cpf = ? WHERE idcliente = ?;";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, cliente.getNome());
+			ps.setString(2, cliente.getEmail());
+			ps.setString(3, cliente.getDatnasc().toString());
+			ps.setString(4, cliente.getSexo());
+			ps.setString(5, cliente.getEstcivil());
+			ps.setInt(6, cliente.getAtivo());
+			ps.setString(7, cliente.getCpf());
+			ps.setInt(8, cliente.getId());
+			ps.executeUpdate();
+			retorno = true;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			retorno = false;
+		}finally {
+			FabricaDeConexoes.desconectar(con);
+			
+		}
+		}
+		
+		
+		return retorno;
+	}
 	
 	
-	
+
 	
 	
 }
